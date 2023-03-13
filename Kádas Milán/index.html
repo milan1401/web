@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="hu">
+ 
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./style.css">
+    <title>Pitagorasz számoló </title>
+    <style>
+       @import url('https://fonts.googleapis.com/css2? family= Playfair+Display & display=swap');
+        .font {
+            font-family: 'Nosifer', cursive;
+        }
+ 
+        #triangle {
+            width: 0;
+            height: 0;
+            border-left: 0px solid transparent;
+            border-right: 200px solid transparent;
+            border-bottom: 100px solid #555;
+        }
+    </style>
+</head>
+ 
+<body>
+ 
+    <h1 class="m">Pitagorasz tétel számoló</h1>
+ 
+    <img src="https://konnyedentanulok.hu/wp-content/uploads/2019/11/Pitagorasz-tetel-derekszogu-haromszog-3a.png" alt="Derékszögű háromszög">
+ 
+    <form action="javascript:void(0)">
+        <fieldset style="width: 50%;">
+            <br>
+            <legend>Adj meg legalább két oldalt!</legend>
+            <label for="a">a oldal:</label>
+            <input class="m" type="text" name="gatya" id="a" oninput="szamol()"><br>
+            <label for="b">b oldal:</label>
+            <input class="m" type="text" name="gatya" id="b" oninput="szamol()"><br>
+            <label for="c">c oldal:</label>
+            <input class="m" type="text" name="gatya" id="c" oninput="szamol()"><br><br>
+            <input type="button" name="gatya" value="TÖRLÉS" onclick="torles()">
+        </fieldset>
+    </form>
+ 
+    <br>
+    <h3>Eredmény:</h3>
+    <div id="triangle"></div>
+ 
+    <script>
+        function szamol() {
+            if (a.value != 0 && b.value != 0) {
+                c.value = Math.sqrt((a.value * a.value) + (b.value * b.value));
+                document.getElementById("c").style.color = "blue";
+ 
+            } else if (a.value != 0 && c.value != 0) {
+                b.value = Math.sqrt((c.value * c.value) - (a.value * a.value));
+                document.getElementById("b").style.color = "blue";
+            } else if (b.value != 0 && c.value != 0) {
+                a.value = Math.sqrt((c.value * c.value) - (b.value * b.value));
+                document.getElementById("a").style.color = "blue";
+            }
+ 
+            const gatya = document.getElementById("triangle");
+            gatya.style = "border-left:" + 0 + "px solid transparent;" +
+                "border-right:" + b.value * 10 + "px solid transparent;" +
+                "border-bottom:" + a.value * 10 + "px solid blue;";
+ 
+ 
+        }
+ 
+        function torles() {
+            a.value = "";
+            b.value = "";
+            c.value = "";
+            document.location.reload();
+        }
+    </script>
+</body>
+ 
+</html>
